@@ -6,7 +6,6 @@ setwd("/Users/robbieday/documents/school/Thesis/ReadyforR")
 library(pracma)
 library(TTR)
 library(matrixStats)
-library(matrixStats)
 library(zoo)
 library(ggplot2)
 library(dplyr)
@@ -16,7 +15,7 @@ TP<-read.csv(file="Telccleaned.csv")
 VP<-read.csv(file="Vienna2cleaned.csv")
 ZP<-read.csv(file="Znojmocleaned.csv")
 
-dim(Z)
+dim(ZP)
 
 Brcolumnstoaverage <- BrP[, c(5,8,11,14,17,20,23,26,29,32,35)]
 Tcolumnstoaverage <- TP[, c(5,8,11,14,17,20,23,26,29,32,35)]
@@ -36,10 +35,11 @@ length(wsaverage)
 RAPrecip <- read.csv("finalarea2013to2023.csv")
 column_vector <- as.numeric(Precip[[1]])
 
+#number of years of data in reanalysis
 n_subsections <- 11  
 
 # Define the length of each subsection
-subsection_length <- (5881 - 1417 + 1)  # Calculate length dynamically
+subsection_length <- (5881 - 1417 + 1)
 
 # Preallocate a matrix to store the subsections
 mat <- matrix(NA, nrow = n_subsections, ncol = subsection_length)
@@ -79,7 +79,7 @@ length(wsaverage) <- 186
 print(smoothdaily_totals)
 print(wsaverage)
 
-
+finalmat <- cbind(smoothdaily_totals, wsaverage)
 
 Precipitation <- cbind(smoothdaily_totals, wsaverage)
 matplot(1:186, finalmat, type = "l", col=c("red", "blue"))
